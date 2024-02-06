@@ -1,0 +1,92 @@
+﻿@using ASP.Server.Model
+@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .listeBooks table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .listeBooks th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .listeBooks th {
+        background-color: #dddddd;
+    }
+    .txt {
+       overflow: auto; resize: both; border: 1px solid black;
+        width: 359px;
+        height: 72px;
+    }
+
+</style>
+<div class="listeBooks">
+    <h1>List of books</h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Author</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Content</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Author</td>
+                    <td>@book.Name</td>
+                    <td>@book.Price</td>
+                    <td>
+                        <div class="txt">
+  @if (!string.IsNullOrEmpty(book.Content))
+  {
+    string[] words = book.Content.Split(' ');
+    if (words.Length > 20)
+    {   
+      string shortenedContent = string.Join(" ", words.Take(20)) + "...";
+      @shortenedContent
+    }
+    else
+    {
+      @book.Content
+    }
+  }
+</div>
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var genre in book.Genres)
+                            {
+                                <li>@genre.Name</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <form asp-controller="Book" asp-action="Delete" method="post">
+                            <input type="hidden" asp-for="@book.Id" name="id">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="Book" asp-action="Modify" method="post">
+                            <input type="hidden" asp-for="@book.Id" name="idtomodify">
+                            <input type="submit" value="Modify" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
