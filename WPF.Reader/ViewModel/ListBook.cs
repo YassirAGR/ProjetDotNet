@@ -1,45 +1,27 @@
-using CommunityToolkit.Mvvm.DependencyInjection;
-using MyNamespace;
-using System;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.Http;
-using System.Windows.Input;
+using WPF.Reader.Model;
 using WPF.Reader.Service;
-
-
-
-
+using System.Windows;
+using System.Collections.Generic;
+using Windows.Web.Http;
+using System.Threading.Tasks;
+using System;
 
 namespace WPF.Reader.ViewModel
 {
-    internal class ListBook : INotifyPropertyChanged
+    public partial class ListBook : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly HttpClient _httpClient = new () { BaseAddress = new Uri("http://127.0.0.1:5000") };
-        public ICommand ItemSelectedCommand { get; set; }
-
-
-
-
-        // n'oublier pas faire de faire le binding dans ListBook.xaml !!!!
-        public ObservableCollection<Genre> Genres => Ioc.Default.GetRequiredService<LibraryService>().Genres;
-
-        public ObservableCollection<Book> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
-
-        public ListBook()
+        [RelayCommand]
+        public void ItemSelected(Book book)
         {
-            //ItemSelectedCommand = new RelayCommand(book => { /* the livre devrais etre dans la variable book */ });
-            Ioc.Default.GetRequiredService<LibraryService>().UpdateBookList();
-            Ioc.Default.GetRequiredService<LibraryService>().UpdateGenreList();
-
-            ItemSelectedCommand = new RelayCommand(book => {
-                Ioc.Default.GetRequiredService<INavigationService>().Navigate<DetailsBook>(book);
-            });
-
         }
 
+        // n'oublier pas faire de faire le binding dans ListBook.xaml !!!!
+        public ObservableCollection<Book> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
     }
 }
-
