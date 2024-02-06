@@ -1,45 +1,5 @@
 # TP .NET
 
-# Groupe de travail:
-- El Mehdi CHEIKH
-- Zineb JERRARI
-- Salah Eddine El Assil
-
-# Rendu réalisé:
-# Partie ASP:
-![image](https://user-images.githubusercontent.com/101091885/216336543-03483629-ac2b-4576-9f6f-dfba73915b8f.png)
-
-On a la possibilité d'ajouter un livre tout en choisissant un ou plusieurs genres:
-![image](https://user-images.githubusercontent.com/99188272/216849928-0e4f821b-4e75-4459-aa8d-0fb666a040a6.png)
-
-On visualise le livre ajouté parmi les anciens affichés :
-![image](https://user-images.githubusercontent.com/99188272/216850019-fea9eec4-0511-447b-ac22-d4181138f3ba.png)
-
-On peut supprimer un livre :
-![image](https://user-images.githubusercontent.com/99188272/216850225-a966db89-5917-4437-b93d-43446fc70842.png)
-
-On peut modifier un livre :
-![image](https://user-images.githubusercontent.com/99188272/216850263-20fa75aa-5883-43ec-8a81-049bbf1e9fd0.png)
-
-
-On peut ajouter un genre :
-![image](https://user-images.githubusercontent.com/99188272/216850038-3fcdc02e-0e2a-4e64-9844-5995b0e99a0b.png)
-
-On peut visualiser le genre ajouté avec les genres déjà existants :
-![image](https://user-images.githubusercontent.com/99188272/216850058-9d15dd75-2074-42a3-8855-8ef7dd904ffc.png)
-
-On peut supprimer un genre :
-![image](https://user-images.githubusercontent.com/99188272/216850102-238e360f-ee94-4db7-8fa1-114f3632d0fe.png)
-
-On peut modifier un genre :
-![image](https://user-images.githubusercontent.com/99188272/216850118-30f47a62-a742-4f87-8e95-7fdc7d97acbe.png)
-
-On peut visualiser la modification apportée à ce genre :
-![image](https://user-images.githubusercontent.com/99188272/216850135-b331b010-3ce2-477a-a74f-caa23ac9f141.png)
-
-
- 
-
 # But
 Construire un web service avec son client Windows pour gerer et consulter une bibliothèque de livres
 # A rendre
@@ -47,7 +7,7 @@ Un web service de stockage et de gestion de livres en ligne
 
 Un logiciel sous Windows pour consulter et lire les livres
 # Contrainte
-Langages autorisés : C#, HTML, Javascript
+Langages autorisés : C#, HTML, Javascript, CSS, TypeScript
 
 Serveur web : ASP.Net Core
 
@@ -58,14 +18,54 @@ Votre solution devra être basé sur le projet Library.sln
 La partie server est dans le projet ASP.Server
 
 La partie client est dans le projet WPF.Reader
+
+La connexion entre votre client et votre serveur est dans le projet WPF.Reader.OpenApi
 # Aide
-Pour éviter les boucles infinies entre genre et livre lors de la conversion en JSON:
+1) Pour éviter les boucles infinies entre genre et livre lors de la conversion en JSON:
+    - Utiliser un ou plusieur DTO (voir plus bas)
 
-- Utiliser l’attribut `[JsonIgnore]` sur une des propriétés pour éviter la boucle
+---
 
-Pour que Entity Framework retourne les genres avec les livres : 
+2) Pour renvoyer un objet différent de celui contenu dans votre base utilisé un DTO
+    - Vous fait votre DTO à la main: <https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5>
+    - Vous utiliser la librairie AutoMapper: <https://automapper.org/> 
 
-- Utilisez la méthode Include : `libraryDbContext.Books.Include(b => b.Genres).Where(x => x.Price > 0)`
+---
+
+3) Pour que Entity Framework retourne les genres avec les livres : 
+
+    - Utilisez la méthode Include : `libraryDbContext.Books.Include(b => b.Genres).Where(x => x.Price > 0)`
+    - Utiliser le LazyLoading
+      - <https://learn.microsoft.com/en-us/ef/ef6/querying/related-data>
+
+---
+
+4) En WPF certain évenements ne suportent pas les comandes utilisez le package [Microsoft.Xaml.Behaviors.Wpf](https://www.nuget.org/packages/Microsoft.Xaml.Behaviors.Wpf)
+      - Exemple  
+        view.xaml
+        ```xml
+        <page xmlns:behaviours="http://schemas.microsoft.com/xaml/behaviors">
+          ...
+          <ListBox ItemsSource="{Binding ChangeMe}">
+            <behaviours:Interaction.Triggers>
+              <behaviours:EventTrigger EventName="SelectionChanged">
+                  <behaviours:InvokeCommandAction Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+              </behaviours:EventTrigger>
+            </behaviours:Interaction.Triggers>
+          </ListBox>
+          ...
+        </page>
+        ```
+        viewmodel.cs
+        ```cs
+        private RelayCommand selectionChangedCommand;
+        public ICommand SelectionChangedCommand => selectionChangedCommand ??= new RelayCommand(SelectionChanged);
+    
+        private void SelectionChanged(object commandParameter)
+        {
+    
+        }
+        ```
 
 # Fonctionnalité attendue
 ## Livrable
@@ -98,11 +98,22 @@ Un utilisateur doit pouvoir :
 - supprimer des livres de la bibliothèque
 - Consulter la liste de tous les livres
 - Consulter la liste de tous les genres
-
-Option : 
-
 - Faire une interface pour ajouter de nouveaux genres 
 - Modifier un livre existant
+
+Options :
+- Remplacer le champs autheur (de type string) de la classe livre par une laison vers une classe Autheur
+  - On considère qu'un livre n'a qu'un seul et unique autheur (même si dans la réalité ce n'est pas vraix)
+  - La class autheur à besoin d'au minimum du nom de l'autheur
+- Afficher des filtres dans la liste des livres pour filtrer par autheurs / genres
+- Une page affichants les statistiques sur :
+  - le nombre de libres total disponible
+  - le nombre de livres par autheur
+  - Le nombre maximum, minmum, median et moyen de mots d'un livre
+- Importer les details d'un livre par l'OpenLibrary
+  - https://openlibrary.org/
+  - Pouvoir rentrer un contenu + isbn
+  - récupéré l'auteur + description et l'ecrire en base
 
 Une ébauche de ce qui est attendu ce trouve dans ASP.Server/Controllers/BookController.cs et GenreController.cs
 
@@ -113,6 +124,18 @@ Une api REST doit être mis à disposition pour permettre à des clients externe
 Une ébauche de ce qui est attendu ce trouve dans le fichier ASP.Server/Api/BookController.cs
 
 Cette api doit permettre de :
+- Récupérer un livre avec son contenu
+- Lister les genres disponibles
+- Lister les livres (sans le contenu)
+
+Options:
+- Utiliser un plugin pour changer le format de sortie
+    - le plugin ne doit pas faire partie de la solution. Il doit etre charger à partir d'un dossier en contenant plusieurs.
+    - Mettez a disposition un moyen pour pouvoir créer un nouveau plugin compatible avec votre solution
+    - Vous ne conaissez pas la liste des plugins en avance, il doivent être chargés dynamiquement
+    - les paramètres de l'API permettent de choisir le plugin a utiliser (/book/{id}?output=xxx)
+    - Pas de package exterieur autorisé !
+- Faite pareil mais avec des plugins codés dans un language compilé (C, C++, RUST, ...)
 
 ## Récupérer un livre avec son contenu : /book/{id} 
 Exemple:
@@ -137,8 +160,16 @@ Exemple:
 ## Lister les livres (sans le contenu) : 
 - Le résultat doit être paginé
 - La recherche doit aussi pouvoir être faite en spécifiant un genre
+- La réponse doit contenir un header qui contient l'index de début et de fin des livres que vous retournez ainsi que le nombre total de livres de votre séléction
 
-Exemple :
+Exemple Header:
+- /book?offset=10&limit=15
+```http
+HTTP/1.1 200
+Content-Type: application/json
+Pagination: 10-25/536
+```
+Exemple Body :
 - /book
 ```json
 [{
@@ -215,6 +246,14 @@ Options :
 
 - Lister tous les genres
 - Afficher les *N* premiers livres d’un genre (vous pouvez définir la limite comme bon vous semble)
+- Gerer la pagination de vos livres (Scroll infini, pages ou autres)
+- Afficher un livre avec formatage: Style de police, couleur, taille du texte, ...
+  - Pensé au RTF, HTML, PDF, ...
+  - Dans un premier temps gérez uniquement 1 format. Si vous avez finit, vous pouvez gérer plusieurs formats en même temps
+- Lire le livre grace à l'API [System.Speech.SpeechSynthesizer](https://learn.microsoft.com/en-us/dotnet/api/system.speech.synthesis.speechsynthesizer?view=netframework-4.8.1&viewFallbackFrom=net-7.0)
+  - Géré la lecture / l'arrêt / la pause / la reprise
+  - Changer les boutons de controle en fonction de l'état de la lecture (comme un lecteur vidéo, ex: youtube)
+  - Commencer à lire a partir de la séléction de l'utilisateur, L'utilisateur doit pouvoir faire un clic droit sur un mot et lancer la lecture a partir de ce mot
 
 À tout moment l’utilisateur doit pouvoir revenir à l’accueil, il n’est pas nécessaire de faire un bouton pour revenir à la page précédente
 
@@ -231,12 +270,18 @@ L’application doit pouvoir recevoir les livres depuis le serveur développé d
 
 Pour générer le code client vous pouvez utiliser :
 
+- Utiliser la librairie WPF.Reader.OpenApi (mettez la à jour par contre !)
+    - Assurer vous que votre serveur fonctionne 
+    - Depuis Visual Studio selectionner le projet WPF.Reader.OpenApi -> Clicker sur projet depuis le menu -> Services connectés -> Gérer les services connectés -> Clicker sur les 3 points (...) sur la ligne <swagger - Client> -> Actualiser
+- OpenAPI Generator Plugin (<https://marketplace.visualstudio.com/items?itemName=ChristianResmaHelle.ApiClientCodeGenerator2022>)
+- OpenApi Generator (<https://github.com/OpenAPITools/openapi-generator>)
 - Unchased NSwag (<https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice>) 
 - NswagStudio (<https://github.com/RicoSuter/NSwag/wiki/NSwagStudio>)
-- OpenApiGenerator
 - ou un autre
 
 Vous pouvez sinon faire les requêtes à la main grâce à :
 
 - HttpClient ([System.Net.Http](https://docs.microsoft.com/en-us/dotnet/api/system.net.http?view=net-5.0))
 - Restsharp (<https://www.nuget.org/packages/RestClient.Net/>)
+
+
