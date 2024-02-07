@@ -14,7 +14,18 @@ namespace ASP.Server.Models
 
         // Mettez ici les propriété de votre livre: Nom et Livres associés
 
+
+        public string Nom { get; set; }
+
+        public List<Book> Books { get; set; }
+
+
+
+
         // N'oublier pas qu'un genre peut avoir plusieur livres
+
+
+
     }
 
 }

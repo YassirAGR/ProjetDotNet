@@ -12,7 +12,14 @@ namespace ASP.Server.Models
         [Key]
         public int Id { get; set; }
 
+
+
         // Mettez ici les propriété de votre livre: Nom, Autheur, Prix, Contenu et Genres associés
         // N'oublier pas qu'un livre peut avoir plusieur genres
+        public string Name { get; set; }
+        public double Prix { get; set; }
+        public string Content { get; set; }
+        public List<Genre> Genres { get ; set; }
+
     }
 }
