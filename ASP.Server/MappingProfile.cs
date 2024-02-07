@@ -19,8 +19,6 @@ namespace ASP.Server
             CreateMap<Genre, GenreDto>();
 
             CreateMap<Book, BooksDto>();
-
-            
         }
 
         
