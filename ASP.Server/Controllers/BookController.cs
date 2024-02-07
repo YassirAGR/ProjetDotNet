@@ -84,8 +84,8 @@ namespace ASP.Server.Controllers
             if (ModelState.IsValid)
             {
 
-                // Il faut intéroger la base pour récupérer l'ensemble des objets genre qui correspond aux id dans CreateBookModel.Genres
                 var genres = libraryDbContext.Genres.Where(genre => book.Genres.Contains(genre.Id)).ToList();
+
                 // Completer la création du livre avec toute les information nécéssaire que vous aurez ajoutez, et metter la liste des gener récupéré de la base aussi
                 libraryDbContext.Add(new Book()
                 {
