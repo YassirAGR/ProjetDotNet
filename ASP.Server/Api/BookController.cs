@@ -32,26 +32,11 @@ namespace ASP.Server.Api
         // - GetBook
         //   - Entrée: Id du livre
         //   - Sortie: Object livre entier
-        [HttpGet("GetBook/{Id}")]
-        public ActionResult<Book> GetBook(int Id)
-        {
-            var test = libraryDbContext.Books.Include(g => g.Genres).Where(g => g.Id == Id).FirstOrDefault();
-
-            if (test == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(test);
-        }
+        
         // - GetGenres
         //   - Entrée: Rien
         //   - Sortie: Liste des genres
-        [HttpGet("GetGenres")]
-        public ActionResult<List<Genre>> GetGenres()
-        {
-            return libraryDbContext.Genres.ToList();
-        }
+        
 
         // Aide:
         // Pour récupéré un objet d'une table :
