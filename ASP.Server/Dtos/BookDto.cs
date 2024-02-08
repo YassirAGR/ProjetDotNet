@@ -10,16 +10,16 @@ namespace ASP.Server.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Prix { get; set; }
+        public double Price { get; set; }
         public string Content { get; set; }
-        public List<GenreDto> Genres { get; set; }
+        public List<GenreDto> Genre { get; set; }
     }
 
     public class GenreDto
     {
         public int Id { get; set; }
 
-        public string Nom { get; set; }
+        public string Name { get; set; }
         
     }
 
@@ -27,8 +27,8 @@ namespace ASP.Server.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Prix { get; set; }
-        public List<GenreDto> Genres { get; set; }
+        public double Price { get; set; }
+        public List<GenreDto> Genre { get; set; }
     }
 }
 

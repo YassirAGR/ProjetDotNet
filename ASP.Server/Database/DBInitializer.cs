@@ -20,21 +20,21 @@ namespace ASP.Server.Database
 
             Genre SF, Classic, Romance, Thriller;
 
-            bookDbContext.Genre.AddRange(
-                SF = new Genre() {Id = 1, Nom = "Science Fiction"},
-                Classic = new Genre() {Id = 2, Nom = "Classic"} ,
-                Romance = new Genre() {Id = 3, Nom = "Romance"},
-                Thriller = new Genre() {Id = 4, Nom = "Thriller"}
+            bookDbContext.Genres.AddRange(
+                SF = new Genre() {Id = 1, Name = "Science Fiction"},
+                Classic = new Genre() {Id = 2, Name = "Classic"} ,
+                Romance = new Genre() {Id = 3, Name = "Romance"},
+                Thriller = new Genre() {Id = 4, Name = "Thriller"}
             );
             bookDbContext.SaveChanges();
 
             // Une fois les moèles complété Vous pouvez faire directement
             // new Book() { Author = "xxx", Name = "yyy", Price = n.nnf, Content = "ccc", Genres = new() { Romance, Thriller } }
             bookDbContext.Books.AddRange(
-                new Book() { Name = "20 000 mers", Prix = 14 , Content = "sous la mer ...", Genres = new() {Romance}},
-                new Book() { Name = "catch", Prix = 33, Content = "TripleH ...", Genres = new() { SF }},
-                new Book() { Name = "MBDS", Prix = 2024, Content = "MongoDB ...", Genres = new() {Classic, Thriller}},
-                new Book() { Name = "scoot", Prix = 1, Content = "  ", Genres = new() {SF, Classic}}
+                new Book() { Name = "20 000 mers", Price = 14, Author = "aa" , Content = "sous la mer ...", Genre = new() {Romance}},
+                new Book() { Name = "catch", Price = 33, Author = "bb", Content = "TripleH ...", Genre = new() { SF }},
+                new Book() { Name = "MBDS", Price = 2024, Author = "cc", Content = "MongoDB ...", Genre = new() {Classic, Thriller}},
+                new Book() { Name = "scoot", Price = 1, Author = "dd" , Content = "azertyuiop", Genre = new() {SF, Classic}}
             );
             // Vous pouvez initialiser la BDD ici
 

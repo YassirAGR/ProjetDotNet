@@ -4,17 +4,93 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="listeBooks">
-    <h1>Liste des livres:</h1>
-    <!-- la liste des genres est dans la variable Model qui est typé en ligne 3, elle correspond à la variable xxx dans View(xxx) du controller -->
-    @foreach (var book in Model)
-    {
-	    <div class="book">
-
-		    <h2> Le livre @book.Name</h2>
-		    <p>est au prix de @book.Prix €,</p>
-		    <p>c'est un : @book.Genres , et il commence par @book.Content (son id est @book.Id)</p>
-	    </div>
+<style>
+    .listeBooks table {
+        width: 100%;
+        border-collapse: collapse;
     }
+
+    .listeBooks th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .listeBooks th {
+        background-color: #dddddd;
+    }
+
+    .txt {
+        overflow: auto;
+        resize: both;
+        border: 1px solid black;
+        width: 359px;
+        height: 72px;
+    }
+
+</style>
+<div class="listeBooks">
+    <h1>List of books</h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Author</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Content</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Author</td>
+                    <td>@book.Name</td>
+                    <td>@book.Price</td>
+                    <td>
+                        <div class="txt">
+                            @if (!string.IsNullOrEmpty(book.Content))
+                            {
+                                string[] words = book.Content.Split(' ');
+                                if (words.Length > 20)
+                                {
+                                    string shortenedContent = string.Join(" ", words.Take(20)) + "...";
+                                    @shortenedContent
+                                }
+                                else
+                                {
+                                    @book.Content
+                                }
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var genre in book.Genre)
+                            {
+                                <li>@genre.Name</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <form asp-controller="Book" asp-action="Delete" method="post">
+                            <input type="hidden" asp-for="@book.Id" name="id">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="Book" asp-action="Modify" method="post">
+                            <input type="hidden" asp-for="@book.Id" name="idtomodify">
+                            <input type="submit" value="Modify" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 

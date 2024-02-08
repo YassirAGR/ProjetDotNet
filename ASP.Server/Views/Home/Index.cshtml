@@ -3,8 +3,78 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <img src="https://media.meer.com/attachments/a148e4ba95129f039573947fb58c558b8db5851a/store/fill/930/523/c83877e28d579dbecb43d67a41cba28e965d78035a85772ed922c748909c/La-constitution-dune-bibliotheque-numerique.jpg; height:auto;" />
+    <h1 class="display-4">Bienvenue à la Bibliothèque Numérique</h1><br />
 </div>
 
+<br />
+<div class="text-center">
+    @{
+        var quote = "Une heure de lecture est le souverain remède contre les dégoûts de la vie. - Montesquieu";
+    }
+    <p class="quote">@quote</p>    @{
+        quote = "Lire est le seul moyen de vivre plusieurs fois. - Pierre Dumayet";
+    }
+    <p class="quote">@quote</p>
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-sm-6 author-of-the-month">
+        <h2>Auteur du mois</h2>
+        <p>Nous sommes heureux de présenter notre auteur du mois:</p>
+        <img src="https://img-4.linternaute.com/t8MXGVKC86bg8FLRqjL_wo9FFGE=/1500x/smart/7e6cb4dd89414b0cb258e6b3926233f7/ccmcms-linternaute/10692507.jpg" />
+        <p><U>Biographie:</U></p>
+        <p>
+            Henri René Albert Guy de Maupassant était un auteur français du XIXe siècle, connu pour être un maître de la nouvelle et représentatif de l'école naturaliste. Il était un protégé de Gustave Flaubert et ses histoires se caractérisent par une économie de style et des dénouements efficaces. Beaucoup de ses œuvres se déroulent pendant la guerre franco-prussienne des années 1870, décrivant la futilité de la guerre et les civils innocents transformés par leurs expériences. Il a écrit 300 nouvelles, six romans, trois livres de voyage et un volume de vers, avec "Boule de Suif" comme son œuvre la plus célèbre.
+        </p>
+        <p><U>Ses oeuvres:</U></p>
+        <img src="https://i.ebayimg.com/images/g/H7oAAOSwXhth3z6z/s-l1600.jpg" />
+        <img src="https://m.media-amazon.com/images/I/51JbgW1rF4L.jpg" />
+        <img src="https://media.vogue.fr/photos/62ecc989e3edecd207f5003b/3:4/w_748%2Cc_limit/61Jl4gYqfQL.jpg" />
+    </div>
+    <div class="col-sm-6 book-of-the-month">
+        <h2>Livre du mois</h2>
+        <p>Découvrez notre livre du mois:</p>
+        <img src="https://m.media-amazon.com/images/I/51R8A-+N1FL._SL1051_.jpg" />
+        <p><U>Résumé:</U></p>
+        <p>
+            Le livre "Le gai savoir" de Friedrich Nietzsche a été publié en 1882, avec une deuxième édition en 1887 qui a ajouté un cinquième livre, une préface et un appendice poétique. L'ouvrage est principalement composé d'aphorismes dans lesquels Nietzsche tente de cerner le caractère de l'être humain et d'identifier les maux dont souffre "l'Européen".
+        </p>
+        <p><U>Auteur:</U></p>
+        <p>
+            Friedrich Wilhelm Nietzsche était un philosophe allemand, connu pour avoir commencé sa carrière en tant que philologue classique avant de se tourner vers la philosophie. Il a démissionné de son poste à l'université en 1879 en raison de problèmes de santé et a continué à écrire ses œuvres principales. En 1889, il a subi un effondrement mental et a vécu ses dernières années sous la garde de sa famille, décédant en 1900 des suites d'une pneumonie et de plusieurs accidents vasculaires cérébraux.
+        </p>
+    </div>
+</div>
+<style>
+    .author-of-the-month, .book-of-the-month {
+        border: 1px solid black;
+        padding: 20px;
+        height: fit-content;
+        width: 50%;
+        margin: 20px auto;
+        text-align: center;
+        background-color: linen;
+    }
 
+        .book-of-the-month img {
+            width: 30%;
+            height: 30%;
+        }
+
+        .author-of-the-month img {
+            width: 30%;
+            height: 30%;
+        }
+
+    .quote {
+        font-style: italic;
+        font-size: 22px;
+    }
+
+    .display-4 {
+        font-style: oblique;
+        font-size: 50px;
+    }
+</style>

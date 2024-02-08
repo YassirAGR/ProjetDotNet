@@ -38,7 +38,7 @@ namespace ASP.Server.Api
         public ActionResult<IEnumerable<BooksDto>> GetBooks([FromQuery] List<int> genre, int limit = 10, int offset = 0)
         {
             var books = libraryDbContext.Books
-                .Include(b => b.Genres)
+                .Include(b => b.Genre)
                 .OrderBy(b => b.Id)
                 .Skip(offset)
                 .Take(limit)
@@ -91,16 +91,16 @@ namespace ASP.Server.Api
 
         public ActionResult<BookDto> GetBook(int id)
         {
-            var bookById = libraryDbContext.Books.Include(b => b.Genres).FirstOrDefault(b => b.Id == id);
+            var bookById = libraryDbContext.Books.Include(b => b.Genre).FirstOrDefault(b => b.Id == id);
             if (bookById == null)
                 return NotFound();
 
 
-            var genreDto = mapper.Map<List<GenreDto>>(bookById.Genres);
+            var genreDto = mapper.Map<List<GenreDto>>(bookById.Genre);
 
             var bookDto = mapper.Map<BookDto>(bookById);
             
-            bookDto.Genres = genreDto ;
+            bookDto.Genre = genreDto ;
 
             return bookDto;
         }
@@ -112,7 +112,7 @@ namespace ASP.Server.Api
         
         public ActionResult<List<GenreDto>> GetGenres()
         {
-            var genres = libraryDbContext.Genre;
+            var genres = libraryDbContext.Genres;
 
             var genreDto = mapper.Map<List<GenreDto>>(genres);
 
