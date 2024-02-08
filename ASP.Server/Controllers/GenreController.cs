@@ -42,7 +42,7 @@ namespace ASP.Server.Controllers
             var listGenres = libraryDbContext.Genres.Include(g => g.Books).ToList();
             return View(listGenres);
         }
-
+            
         public ActionResult<CreateGenreModel> Create(CreateGenreModel genre)
         {
             if (ModelState.IsValid)
