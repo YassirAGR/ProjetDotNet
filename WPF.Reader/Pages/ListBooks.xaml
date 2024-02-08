@@ -11,6 +11,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListBooks">
     <StackPanel>
+        <Grid Margin="50" Width="700" Height="300">
+            <ListBox ItemsSource="{Binding Books}" TextBlock.FontStyle="Italic" TextBlock.FontSize="15">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Title :"></TextBlock>
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="Author :"></TextBlock>
+                            <TextBlock Text="{Binding Author}" />
+                            <Button  
+                                    Command="{Binding ElementName=ListBook, Path=DataContext.ItemSelectedCommand}"   
+                                    CommandParameter="{Binding .}"
+                                    Content="Détail" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
         <!-- 
             A vous de créer la liste avec le bon binding. Une <ListBox> fera l'affaire 
             La propriété ItemsSource doit pointé vers la propiété Books de votre dataContext actuelle 
@@ -24,6 +43,19 @@
             Command="{Binding DataContext.ItemSelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
             CommandParameter="{Binding .}"
         -->
+        <StackPanel Margin="50" Height="200">
+            <TextBlock Text="List des genres dans notre library :" TextAlignment="Center" ></TextBlock>
+            <ListBox ItemsSource="{Binding Genres}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Name : " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </StackPanel>
 </Page>
 
