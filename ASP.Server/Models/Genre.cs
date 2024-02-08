@@ -19,6 +19,7 @@ namespace ASP.Server.Models
 
         public List<Book> Books { get; set; }
 
+        // Mettez ici les propriété de votre livre: Nom et Livres associés
 
 
 

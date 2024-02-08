@@ -21,105 +21,11 @@ namespace ASP.Server.Api
     [ApiController]
     public class BookController(LibraryDbContext libraryDbContext, IMapper mapper) : ControllerBase
     {
-        private readonly LibraryDbContext libraryDbContext = libraryDbContext;
-
-        private readonly IMapper mapper = mapper;
-
-        // Methode a ajouter :
-
-
-        // - GetBooks
-        //   - Entrée: Optionel -> Liste d'Id de genre, limit -> defaut à 10, offset -> défaut à 0
-        //     Le but de limit et offset est dé créer un pagination pour ne pas retourner la BDD en entier a chaque appel
-        //   - Sortie: Liste d'object contenant uniquement: Auteur, Genres, Titre, Id, Prix
-        //     la liste restourner doit être compsé des élément entre <offset> et <offset + limit>-
-        //     Dans [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] si offset=8 et limit=5, les élément retourner seront : 8, 9, 10, 11, 12
-        
-        public ActionResult<IEnumerable<BooksDto>> GetBooks([FromQuery] List<int> genre, int limit = 10, int offset = 0)
+        private readonly LibraryDbContext libraryDbContext;
+        public BookController(LibraryDbContext libraryDbContext)
         {
-            var books = libraryDbContext.Books
-                .Include(b => b.Genres)
-                .OrderBy(b => b.Id)
-                .Skip(offset)
-                .Take(limit)
-                .ToList();
-
-            var booksDto = mapper.Map<List<BooksDto>>(books);
-
-            return booksDto;
+            this.libraryDbContext = libraryDbContext;
         }
-        
-        /*
-        public ActionResult<IEnumerable<BooksDto>> GetBooks([FromQuery] List<int> genre, int limit = 10, int offset = 0)
-        {
-            // Filtrer les livres par genre si une liste d'ID de genre est fournie
-            IQueryable<Book> query = libraryDbContext.Books.Include(b => b.Genres);
-            if (genre != null && genre.Any())
-            {
-                query = query.Where(b => b.Genres.Any(g => genre.Contains(g.Id)));
-            }
-
-            // Compter le nombre total de livres dans la requête
-            int totalCount = query.Count();
-
-            // Appliquer la pagination en sautant les premiers éléments et en prenant le nombre spécifié d'éléments
-            var books = query.OrderBy(b => b.Id).Skip(offset).Take(limit).ToList();
-
-            // Mapper les livres vers leurs DTO correspondants
-            var booksDto = mapper.Map<List<BooksDto>>(books);
-
-            // Retourner les livres DTO avec des informations supplémentaires pour la pagination
-            return new ObjectResult(new
-            {
-                TotalCount = totalCount,
-                Books = booksDto
-            });
-        }
-        */
-
-
-        // - GetBook
-        //   - Entrée: Id du livre
-        //   - Sortie: Object livre entier
-        //   - Erreur: 404 si le livre n'existe pas
-        //   - Erreur: 400 si l'id n'est pas un nombre
-        //   - Sortie:
-        //      {
-        //          "Id": 1, "Name": "titre", "Prix": 10.5, "Content": "contenu",
-        //          "Genres": [{ "Id": 1, "Name": "Genre" }]
-        //      }
-
-        public ActionResult<BookDto> GetBook(int id)
-        {
-            var bookById = libraryDbContext.Books.Include(b => b.Genres).FirstOrDefault(b => b.Id == id);
-            if (bookById == null)
-                return NotFound();
-
-
-            var genreDto = mapper.Map<List<GenreDto>>(bookById.Genres);
-
-            var bookDto = mapper.Map<BookDto>(bookById);
-            
-            bookDto.Genres = genreDto ;
-
-            return bookDto;
-        }
-        
-        // - GetGenres
-        //   - Entrée: Rien
-        //   - Sortie: Liste des genres
-
-        
-        public ActionResult<List<GenreDto>> GetGenres()
-        {
-            var genres = libraryDbContext.Genre;
-
-            var genreDto = mapper.Map<List<GenreDto>>(genres);
-
-            return genreDto;
-        }
-        
-
         // Aide:
         // Pour récupéré un objet d'une table :
         //   - libraryDbContext.MyObjectCollection.<Selecteurs>.First()

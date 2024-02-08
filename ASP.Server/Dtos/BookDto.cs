@@ -21,7 +21,7 @@ namespace ASP.Server.Dtos
 
         public string Nom { get; set; }
         
-    }
+}
 
     public class BooksDto
     {
