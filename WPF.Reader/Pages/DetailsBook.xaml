@@ -38,7 +38,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
-            <Button Command="{Binding ReadCommand}" CommandParameter="{Binding CurrentBook}" Content="Lire le livre " Background="Red"  Height="50" Width="100"/>
+            <Button Command="{Binding ReadCommand}" CommandParameter="{Binding CurrentBook}" Content="Lire le livre " Background="Red"  Height="50" Width="100" Click="Button_Click"/>
         </StackPanel>
         <!-- il faut afficher les information du livre: Nom, Auteur, Prix, Genres-->
         <!-- Mais pas le contenu ! -->
