@@ -37,9 +37,6 @@ namespace ASP.Server.Database
                 new Book() { Name = "scoot", Prix = 1, Content = "  ", Genres = new() {SF, Classic}}
             );
             // Vous pouvez initialiser la BDD ici
-
-            
-
             bookDbContext.SaveChanges();
         }
     }
