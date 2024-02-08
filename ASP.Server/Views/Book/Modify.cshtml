@@ -1,7 +1,7 @@
 ﻿@using ASP.Server.Controllers
-@model CreateBookModel
+@model modifyBookModel
 @{
-    ViewData["Title"] = "Add a book";
+	ViewData["Title"] = "Modify a book";
 }
 
 <style>
@@ -34,6 +34,7 @@
         font-size: 14px;
     }
 
+
     label {
         width: 10%;
         text-align: right;
@@ -60,13 +61,14 @@
         font-size: 10px;
     }
 </style>
-<h1>Add a book</h1>
-<form asp-controller="Book" asp-action="Create">
+
+<h1>Modify book</h1>
+<form asp-controller="Book" asp-action="Modify">
+    <input type="hidden" value="@Model.Id" name="idtomodify" />
     <div class="input-group">
         <label asp-for="Name">Name:</label>
-        <input asp-for="Name" />
+        <input asp-for="Name" value="@Model.Name" />
     </div>
-
     <div class="input-group">
         <label asp-for="Author">Author:</label>
         <input asp-for="Author" />
@@ -79,12 +81,12 @@
         <label asp-for="Content">Content:</label>
         <textarea asp-for="Content"></textarea>
     </div>
-
-    <p style="color: red ; font-weight: bold;">Sélectionnez les genres avec (CTRL + clic).</p>
-
+    <p style="color: red ; font-weight: bold;">N'oubliez pas de sélectionner les genres (CTRL + clic).</p>
     <div class="input-group">
-        <label asp-for="Genres">Genres:</label>
-        <select asp-for="Genres" asp-items="@(new SelectList(Model.AllGenres, "Id", "Name"))" multiple></select>
+        <label asp-for="Genres"></label>
+        <select asp-for="Genres" asp-items="@(new SelectList(Model.AllGenres,"Id","Name"))">
+        </select>
     </div>
-    <input type="submit" value="Add" style="width: 100%; margin-top: 50px" />
+    <input type="submit" value="Update" style="width: 100%; margin-top: 50px" />
+
 </form>

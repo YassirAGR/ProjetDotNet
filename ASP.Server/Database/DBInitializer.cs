@@ -18,7 +18,7 @@ namespace ASP.Server.Database
                 return;
 
             Genre SF, Classic, Romance, Thriller;
-            bookDbContext.Genre.AddRange(
+            bookDbContext.Genres.AddRange(
                 SF = new Genre(),
                 Classic = new Genre(),
                 Romance = new Genre(),
