@@ -22,7 +22,7 @@ namespace WPF.Reader.Model
         public string Name { get; set; }
         public string Author { get; set; }
         public string Price { get; set; }
-
+        public string Content { get; set; }
         public List<string> Genres { get; set; }
 
     }
