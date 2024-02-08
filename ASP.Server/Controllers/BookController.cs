@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using ASP.Server.Models;
-using ASP.Server.ViewModels;
-using AutoMapper.QueryableExtensions;
-using AutoMapper;
 
 namespace ASP.Server.Controllers
 {
