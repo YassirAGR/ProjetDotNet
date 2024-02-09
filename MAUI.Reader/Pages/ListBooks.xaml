@@ -7,30 +7,38 @@
     <ContentPage.BindingContext>
         <vm:ListBooks />
     </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <toolkit:SelectedItemEventArgsConverter x:Key="converter" />
     </ContentPage.Resources>
 
     <ScrollView>
         <StackLayout Padding="30,0" Spacing="25">
+            <Label Text="Livres disponibles" FontSize="Title" Margin="20" FontAttributes="Bold" />
+
             <ListView ItemsSource="{Binding Book}"
                       SelectedItem="{Binding ItemSelectedCommand}"
                       x:Name="listBooks"
                       HasUnevenRows="True">
+
                 <ListView.Behaviors>
-                    <toolkit:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" EventArgsConverter="{StaticResource Key=converter }" />
+                    <toolkit:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" EventArgsConverter="{StaticResource Key=converter}" />
                 </ListView.Behaviors>
+
                 <ListView.ItemTemplate>
-                    <DataTemplate >
+                    <DataTemplate>
                         <ViewCell>
                             <HorizontalStackLayout Padding="10">
-                                <Image Source="{Binding Image}" WidthRequest="100" HeightRequest="100" />
-                                <Label TextTransform="Uppercase" Text="{Binding Name}" />
-                                <Label TextTransform="Lowercase" Text="{Binding Author}" />
+                                <Image Source="{Binding Cover}" HeightRequest="100" Aspect="AspectFit" SemanticProperties.Description="dot net bot in a race car number eight"/>
+                                <StackLayout>
+                                    <Label Margin="5" Text="{Binding Name}" />
+                                    <Label Margin="5" Text="{Binding Author}" />
+                                </StackLayout>
                             </HorizontalStackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
             </ListView>
         </StackLayout>
     </ScrollView>
