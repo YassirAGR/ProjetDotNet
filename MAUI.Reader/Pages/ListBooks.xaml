@@ -24,7 +24,7 @@
                     <DataTemplate >
                         <ViewCell>
                             <HorizontalStackLayout Padding="10">
-                                
+                                <Image Source="{Binding Image}" WidthRequest="100" HeightRequest="100" />
                                 <Label TextTransform="Uppercase" Text="{Binding Name}" />
                                 <Label TextTransform="Lowercase" Text="{Binding Author}" />
                             </HorizontalStackLayout>

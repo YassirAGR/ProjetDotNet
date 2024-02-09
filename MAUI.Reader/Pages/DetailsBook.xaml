@@ -8,9 +8,13 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             x:DataType="vm:InDesignDetailsBook"
+             d:DataContext="vm:InDesignReadBook"
+             x:DataType="vm:DetailsBook"
              Title="DetailsBook">
-
+    
+    
+   
+    
 
     <Grid>
         
@@ -23,13 +27,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Text="{Binding Name}" Margin="5"/>
-        <Label Grid.Row="1" Text="{Binding Author}" Margin="5"/>
-        <Label Grid.Row="2" Text="{Binding Price}" Margin="5"/>
-        <Label Grid.Row="3" Text="{Binding Genres}" Margin="5"/>
+        <Label Grid.Row="0" Text="{Binding CurrentBook.Name}" Margin="5"/>
 
-        <!-- Bouton pour lire le livre -->
-        <Button Grid.Row="4" Text="Lire le livre" Command="{Binding ReadCommand}" />
+        <Label Grid.Row="1" Text="{Binding CurrentBook.Author}" Margin="5"/>
+        <Label Grid.Row="2" Text="{Binding CurrentBook.Price}" Margin="5"/>
+        <Label Grid.Row="3" Text="{Binding CurrentBook.Description}" Margin="5"/>
+
+        <Button Grid.Row="4" Text="Lire le livre" Command="{Binding ReadBook2Command}"/>
     </Grid>
 
 </ContentPage>
