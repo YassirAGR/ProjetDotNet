@@ -31,7 +31,6 @@ namespace WPF.Reader.ViewModel
 
         public ListBook()
         {
-            //ItemSelectedCommand = new RelayCommand(book => { /* the livre devrais etre dans la variable book */ });
             Ioc.Default.GetRequiredService<LibraryService>().UpdateBookList();
             Ioc.Default.GetRequiredService<LibraryService>().UpdateGenreList();
 
