@@ -239,8 +239,14 @@ La solution fournie intègre NSwag par défaut
 L’application doit pouvoir permettre de :
 
 - Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/64ddffca-6fad-4f7c-aa54-03ee3d9662d5)
+
 - Afficher les détails d’un livre
+- > ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/e4c96c1b-1a9b-4704-b639-057f36e38528)
+
 - Lire un livre
+- > ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/e2442dc3-d8fa-439a-a2fc-5ed09c014e10)
+
 
 Options :
 
