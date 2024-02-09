@@ -19,7 +19,7 @@ namespace WPF.Reader.ViewModel
 
         public Book CurrentBook { get; set; }
 
-        public ICommand ReadCommand { get; init; } = new RelayCommand(book => { Ioc.Default.GetRequiredService<INavigationService>().Navigate<ReadBook>((Book)book); });
+        public ICommand ReadCommand { get; init; } = new RelayCommand<Book>(book => { Ioc.Default.GetRequiredService<INavigationService>().Navigate<ReadBook>((Book)book); });
 
         public DetailsBook(Book book)
         {

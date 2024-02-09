@@ -34,7 +34,7 @@ namespace WPF.Reader.ViewModel
             Ioc.Default.GetRequiredService<LibraryService>().UpdateBookList();
             Ioc.Default.GetRequiredService<LibraryService>().UpdateGenreList();
 
-            ItemSelectedCommand = new RelayCommand(book => {
+            ItemSelectedCommand = new RelayCommand<Book>(book => {
                 Ioc.Default.GetRequiredService<INavigationService>().Navigate<DetailsBook>(book);
             });
 

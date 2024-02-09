@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using MyNamespace;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,8 +17,8 @@ namespace WPF.Reader.ViewModel
 
         public Frame Frame => Ioc.Default.GetRequiredService<INavigationService>().Frame;
 
-        public ICommand GoBack { get; init; } = new RelayCommand(x => { Ioc.Default.GetRequiredService<INavigationService>().Frame.GoBack(); });
-        public ICommand GoToHome { get; init; } = new RelayCommand(x => {
+        public ICommand GoBack { get; init; } = new RelayCommand<Book>(x => { Ioc.Default.GetRequiredService<INavigationService>().Frame.GoBack(); });
+        public ICommand GoToHome { get; init; } = new RelayCommand<Book>(x => {
             var service = Ioc.Default.GetRequiredService<INavigationService>();
             if (service.Frame.CanGoBack)
             {
