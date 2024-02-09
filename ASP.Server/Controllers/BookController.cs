@@ -20,14 +20,12 @@ namespace ASP.Server.Controllers
         public String Name { get; set; }
 
         [Required]
-
         public string Content { get; set; }
-        [Required]
 
+        [Required]
         public double Price { get; set; }
 
         [Required]
-
         public string Author { get; set; }
 
         public List<int> Genres { get; set; }
@@ -44,19 +42,17 @@ namespace ASP.Server.Controllers
         [Required]
         public String Name { get; set; }
 
-        // Ajouter d'un livre
         [Required]
-
         public string Content { get; set; }
-        [Required]
 
+        [Required]
         public double Price { get; set; }
 
         [Required]
-
         public string Author { get; set; }
 
         public List<int> Genres { get; set; }
+
         public List<Genre> GenresList { get; set; }
 
         public IEnumerable<Genre> AllGenres { get; init; }

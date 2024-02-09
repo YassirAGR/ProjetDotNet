@@ -14,17 +14,17 @@ namespace MAUI.Reader.ViewModel
     {
         public ListBooks()
         {
-            ItemSelectedCommand = new Command(OnItemSelectedCommand);
+            ItemSelectedCommand = new Command<Book>(OnItemSelectedCommand);
         }
+
         public ICommand ItemSelectedCommand { get; private set; }
-        public void OnItemSelectedCommand(object book)
+        public void OnItemSelectedCommand(Book book)
         {
+            Ioc.Default.GetRequiredService<INavigationService>().Navigate<DetailsBook>(book);
+    
         }
 
-
-        // n'oublier pas faire de faire le binding dans ListBook.xaml !!!!
-        public ObservableCollection<Book> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
-
+        public ObservableCollection<Book> Book => Ioc.Default.GetRequiredService<LibraryService>().Book;
 
         public int Count { get; set; }
 

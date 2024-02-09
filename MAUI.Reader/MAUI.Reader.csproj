@@ -68,6 +68,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\WPF.Reader.OpenApi\WPF.Reader.OpenApi.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="AppShell.xaml.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>

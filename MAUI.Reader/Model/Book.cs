@@ -18,5 +18,13 @@ namespace MAUI.Reader.Model
     // /!\ ATTENTION ! Si vous récupéré les livres depuis votre serveur, cette classe ne sert plus a rien !
     public class Book
     {
+        public string Name { get; set; }
+        public string Author { get; set; }
+        public string Description { get; set; }
+        public string Cover { get; set; }
+        public string Content { get; set; }
+        
+        public int Price { get; set; }
+        
     }
 }
