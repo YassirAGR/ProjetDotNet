@@ -146,8 +146,12 @@ Une ébauche de ce qui est attendu ce trouve dans le fichier ASP.Server/Api/Book
 
 Cette api doit permettre de :
 - Récupérer un livre avec son contenu
+![Schema](doc/book.png)
 - Lister les genres disponibles
+![Schema](doc/genres.png)
 - Lister les livres (sans le contenu)
+![Schema](doc/books.png)
+
 
 Options:
 - Utiliser un plugin pour changer le format de sortie
