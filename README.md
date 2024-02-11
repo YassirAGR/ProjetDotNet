@@ -257,7 +257,7 @@ La solution fournie intègre NSwag par défaut
 
 # Application Windows
 
-## Affichage MAUI.Reader
+## Affichage MAUI.Reader (Notre Application Windows qui marche bien)
 L’application doit pouvoir permettre de :
 
 - Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
@@ -274,7 +274,7 @@ L’application doit pouvoir permettre de :
 - >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/cabd6052-5272-4fb0-97a8-8a2f191f54b8)
 
 
-## Affichage WPF.Reader
+## Affichage WPF.Reader (ca crache mais on a comme meme essayé de voir si on peut la faire marcher :) )
 L’application doit pouvoir permettre de :
 
 - Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
