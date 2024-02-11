@@ -235,7 +235,20 @@ La solution fournie intègre NSwag par défaut
 
 
 # Application Windows
-## Affichage
+
+## Affichage MAUI.Reader
+L’application doit pouvoir permettre de :
+
+- Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
+- >
+
+- Afficher les détails d’un livre
+- 
+
+- Lire un livre
+- >
+
+## Affichage WPF.Reader
 L’application doit pouvoir permettre de :
 
 - Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
