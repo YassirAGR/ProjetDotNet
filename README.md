@@ -107,6 +107,12 @@ Un utilisateur doit pouvoir :
 - Consulter la liste de tous les genres
 - ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/fd35e0b9-36f6-4a1f-a3cc-24e14445bb1f)
 
+- Modifier la liste des genres
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/ee3dcded-c66d-4ecc-9fe1-58f166c38700)
+  >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/f9a9d89d-4147-4bee-87db-197e0f5ff61f)
+
+
+
 - Faire une interface pour ajouter de nouveaux genres
 - >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/efd502fa-4aa8-4be5-ad24-5aca31d64298)
 
