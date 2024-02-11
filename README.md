@@ -108,7 +108,8 @@ Un utilisateur doit pouvoir :
 - ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/fd35e0b9-36f6-4a1f-a3cc-24e14445bb1f)
 
 - Faire une interface pour ajouter de nouveaux genres
-- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/3266581d-05a5-42c8-8bfc-facb606bf8dc)
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/efd502fa-4aa8-4be5-ad24-5aca31d64298)
+
 
 - Modifier un livre existant
 - On modifie un livre ou plusieurs en cliquant sur le bouton modifier dans la page de liste des livres.
