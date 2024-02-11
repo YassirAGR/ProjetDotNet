@@ -1,26 +1,37 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using MyNamespace;
 using System.ComponentModel;
 using System.Windows.Input;
-using WPF.Reader.Model;
+using System;
+using System.Net.Http;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using WPF.Reader.Service;
+using CommunityToolkit.Mvvm.Input;
 
 namespace WPF.Reader.ViewModel
 {
-    public partial class DetailsBook(Book book) : INotifyPropertyChanged
+    public class DetailsBook : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Une commande permet de recevoir des évènement de l'IHM
-        public ICommand ReadBook2Command { get; init; } = new RelayCommand<Book>(x => { /* A vous de définir la commande */ });
-
-        // Vous pouvez aussi utiliser cette forme pour définir une commande. La ligne du dessus fait strictement la même chose, choisissez une des 2 formes
-        [RelayCommand]
-        public void ReadBook(Book book)
-        {
-            /* A vous de définir la commande */
-        }
+        private readonly HttpClient _httpClient = new() { BaseAddress = new Uri("http://127.0.0.1:5000") };
 
         // n'oublier pas faire de faire le binding dans DetailsBook.xaml !!!!
-        public Book CurrentBook { get; init; } = book;
+
+        public Book CurrentBook { get; set; }
+
+        public ICommand ReadCommand { get; init; } = new RelayCommand<Book>(book => { Ioc.Default.GetRequiredService<INavigationService>().Navigate<ReadBook>((Book)book); });
+
+        public DetailsBook(Book book)
+        {
+            GetDetailsBook(book.Id);
+        }
+
+        public async void GetDetailsBook(int id)
+        {
+            var currentBook = await new BookClient(_httpClient).GetBookAsync(id);
+            CurrentBook = currentBook;
+
+        }
     }
 
     /* Cette classe sert juste a afficher des donnée de test dans le designer */
@@ -29,3 +40,4 @@ namespace WPF.Reader.ViewModel
         public InDesignDetailsBook() : base(new Book() /*{ Title = "Test Book" }*/) { }
     }
 }
+
