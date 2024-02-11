@@ -95,11 +95,25 @@ Il est nécessaire pour ces fonctionnalités de mettre à disposition de l’uti
 Un utilisateur doit pouvoir :
 
 - ajouter des livres dans la bibliothèque
+- > ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/f96325b8-e54d-499d-bd18-41a2ede1e651)
+
 - supprimer des livres de la bibliothèque
+- On supprime un livre ou plusieurs en cliquant sur le bouton supprimer dans la page de la liste des livres:
+- > ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/b352b66b-c958-4f8a-922c-01b27d169e1d)
+
 - Consulter la liste de tous les livres
+- > ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/143f845a-3019-4132-a2f0-a2cdee92cd0d)
+
 - Consulter la liste de tous les genres
-- Faire une interface pour ajouter de nouveaux genres 
+- ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/fd35e0b9-36f6-4a1f-a3cc-24e14445bb1f)
+
+- Faire une interface pour ajouter de nouveaux genres
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/3266581d-05a5-42c8-8bfc-facb606bf8dc)
+
 - Modifier un livre existant
+- On modifie un livre ou plusieurs en cliquant sur le bouton modifier dans la page de liste des livres.
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/cfbc5a04-bda1-44b2-8bf1-9f9b7492ced2)
+
 
 Options :
 - Remplacer le champs autheur (de type string) de la classe livre par une laison vers une classe Autheur
@@ -240,13 +254,18 @@ La solution fournie intègre NSwag par défaut
 L’application doit pouvoir permettre de :
 
 - Lister les *N* premiers livres (vous pouvez définir la limite comme bon vous semble)
-- >
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/3dce46f6-b4b5-444d-9942-e6db995dcf89)
+
 
 - Afficher les détails d’un livre
-- 
+- En cliquant sur le livre que l'on souhaite de voir son detail :
+- ![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/4d36de21-8ba7-4180-a47c-ac299ec8924d)
+
 
 - Lire un livre
-- >
+- si on clique sur le bouton lire on peut recuperer le contenu de livre :
+- >![image](https://github.com/YassirAGR/ProjetDotNet/assets/104578707/cabd6052-5272-4fb0-97a8-8a2f191f54b8)
+
 
 ## Affichage WPF.Reader
 L’application doit pouvoir permettre de :
